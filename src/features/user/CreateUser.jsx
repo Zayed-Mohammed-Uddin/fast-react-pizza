@@ -34,7 +34,7 @@ function CreateUser() {
 
       {username !== "" && (
         <div>
-          <Button type="primary" onClick={handleSubmit}>
+          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
             Start ordering
           </Button>
         </div>

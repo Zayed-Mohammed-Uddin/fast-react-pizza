@@ -8,7 +8,6 @@ function SearchOrder() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle search logic here
     if (!orderId) {
       alert("Please enter an order ID");
       return;
@@ -18,7 +17,7 @@ function SearchOrder() {
     setOrderId("");
   };
   return (
-    <form className="flex items-center relative" onSubmit={handleSubmit}>
+    <form className="relative flex items-center" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter order ID"
@@ -27,7 +26,7 @@ function SearchOrder() {
         onChange={(e) => setOrderId(e.target.value)}
         className="focus:ring-opacity-50 w-28 rounded-full bg-yellow-100 px-4 py-2 transition-all duration-200 placeholder:text-stone-400 focus:ring focus:ring-yellow-500 focus:outline-none sm:w-48 sm:focus:w-72"
       />
-      <Button type="search" className="absolute right-0">🔎</Button>
+      <Button type="search" htmlType="submit">🔎</Button>
     </form>
   );
 }

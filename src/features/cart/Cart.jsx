@@ -12,10 +12,7 @@ function Cart() {
   if (cart.length === 0) {
     return (
       <div className="px-4 py-3">
-        <Button
-          to="/menu"
-          className="text-sm text-blue-500 hover:text-blue-600 hover:underline"
-        >
+        <Button to="/menu" type="primary">
           &larr; Back to menu
         </Button>
 
@@ -28,12 +25,12 @@ function Cart() {
 
   return (
     <div className="px-4 py-3">
-      <Link
+      <Button
         to="/menu"
-        className="text-blue-500 hover:text-blue-700 hover:underline"
+        type="small"
       >
         &larr; Back to menu
-      </Link>
+      </Button>
 
       <h2 className="mt-7 text-xl font-semibold">Your cart, {username}</h2>
 
@@ -44,9 +41,9 @@ function Cart() {
       </ul>
 
       <div className="mt-6 space-x-2">
-        <Link to="/order/new" className="orderBtn">
+        <Button to="/order/new" type="order">
           Order pizzas
-        </Link>
+        </Button>
         <Button type="secondary" onClick={() => dispatch(clearCart())}>
           Clear cart
         </Button>

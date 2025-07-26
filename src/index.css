@@ -54,8 +54,4 @@
   .orderInput {
     @apply block w-64 border-b-2 transition-all duration-200 focus:w-72 focus:outline-none;
   }
-
-  .orderBtn {
-    @apply inline-block cursor-pointer rounded-full bg-yellow-500 p-3 text-xs font-bold text-stone-800 uppercase shadow-md transition-colors duration-200 hover:bg-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed;
-  }
 }

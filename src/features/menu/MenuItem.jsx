@@ -1,4 +1,3 @@
-import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import AddToCart from "../cart/AddToCart";
 

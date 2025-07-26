@@ -20,11 +20,7 @@ function AddToCart({ pizza }) {
   }
 
   if (isInCart) {
-    return (
-      <Button type="button">
-        In cart ({currentQuantity})
-      </Button>
-    );
+    return <Button type="cart">In cart ({currentQuantity})</Button>;
   }
 
   return (
