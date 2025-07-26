@@ -24,8 +24,10 @@ function Button({
     base: `${baseStyles} ${standardPadding} ${commonText}`,
     primary: `${baseStyles} px-4 py-3 md:px-6 md:py-4 ${commonText} ${yellowVariant} ${focusRing}`,
     small: `${baseStyles} py-2 md:px-5 sm:py-2.5 ${commonText} ${yellowVariant} ${focusRing}`,
+    delete: `${baseStyles} py-2 md:px-5 sm:py-2.5 bg-red-500 hover:bg-red-600 focus:ring-red-400`,
     cart: `${baseStyles} ${standardPadding} ${commonText} ${greenVariant} ${focusRing}`,
     secondary: `${baseStyles} ${standardPadding} bg-transparent border border-stone-600 ${commonText} hover:bg-yellow-500 hover:text-stone-800 hover:border-yellow-500 focus:ring-yellow-400 ${focusRing}`,
+    open: `${baseStyles} ${standardPadding} ${commonText} ${focusRing} ${greenVariant}`,
     search: `flex items-center justify-center w-10 h-10 rounded-full ${commonText} shadow-md transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 absolute right-0 ${yellowVariant} ${focusRing}`,
     order: `${baseStyles} ${standardPadding} ${commonText} ${yellowVariant} ${focusRing}`,
   };

@@ -2,7 +2,7 @@
   "name": "fast-react-pizza",
   "description": "A modern pizza ordering application built with React, Redux Toolkit, and React Router v6",
   "version": "1.0.0",
-  "author": "Your Name",
+  "author": "Zayed Uddin",
   "keywords": ["react", "redux", "pizza", "ordering", "tailwind", "vite"],
   "repository": {
     "type": "git",

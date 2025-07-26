@@ -1,13 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
-import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
+import { addItem } from "../cart/cartSlice";
 
 function AddToCart({ pizza }) {
   const { id, name, unitPrice } = pizza;
   const dispatch = useDispatch();
-  const currentQuantity = useSelector(getCurrentQuantityById(id));
-  const isInCart = currentQuantity > 0;
-
+  
   function handleAddToCart() {
     const newItem = {
       pizzaId: id,
@@ -17,10 +15,6 @@ function AddToCart({ pizza }) {
       totalPrice: unitPrice,
     };
     dispatch(addItem(newItem));
-  }
-
-  if (isInCart) {
-    return <Button type="cart">In cart ({currentQuantity})</Button>;
   }
 
   return (
