@@ -51,7 +51,4 @@
         100% 100%;
     }
   }
-  .orderInput {
-    @apply block w-64 border-b-2 transition-all duration-200 focus:w-72 focus:outline-none;
-  }
 }

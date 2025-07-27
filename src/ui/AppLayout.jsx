@@ -12,7 +12,7 @@ function AppLayout() {
       {isLoading && <Spinner />}
       <Header />
 
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto mb-6">
         <main className="mx-auto max-w-3xl">
           <Outlet />
         </main>

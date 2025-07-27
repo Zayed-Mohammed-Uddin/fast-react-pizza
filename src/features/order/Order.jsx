@@ -1,15 +1,21 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
 import OrderItem from "./OrderItem";
+import { clearCart } from "../cart/cartSlice";
 
 function Order() {
   const order = useLoaderData();
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+
   const {
     id,
     status,
@@ -19,6 +25,13 @@ function Order() {
     estimatedDelivery,
     cart,
   } = order;
+
+  useEffect(() => {
+    if (searchParams.get("clearCart") === "true") {
+      dispatch(clearCart());
+    }
+  }, [searchParams, dispatch]);
+
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
