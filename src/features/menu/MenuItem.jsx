@@ -6,7 +6,7 @@ import {
   decreaseItemQuantity,
   getCurrentQuantityById,
   increaseItemQuantity,
-} from "../cart/cartSlice";
+} from "../cart/slice/cartSlice";
 import Button from "../../ui/Button";
 
 function MenuItem({ pizza }) {
@@ -34,31 +34,30 @@ function MenuItem({ pizza }) {
           </p>
         )}
       </div>
-      <div className="mt-auto mb-3 flex flex-col space-y-3 items-center justify-between">
-        {!soldOut && (
-            currentQuantity > 0 ? (
-              <>
-                <div className="flex items-center gap-2">
-                  <Button
-                    type="small"
-                    onClick={() => dispatch(decreaseItemQuantity(id))}
-                  >
-                    -
-                  </Button>
-                  <span className="text-sm font-medium">{currentQuantity}</span>
-                  <Button
-                    type="small"
-                    onClick={() => dispatch(increaseItemQuantity(id))}
-                  >
-                    +
-                  </Button>
-                </div>
-                <DeleteItem pizzaId={id} />
-              </>
-            ) : (
-              <AddToCart pizza={pizza} />
-            )
-        )}
+      <div className="mt-auto mb-3 flex flex-col items-center justify-between space-y-3">
+        {!soldOut &&
+          (currentQuantity > 0 ? (
+            <>
+              <div className="flex items-center gap-2">
+                <Button
+                  type="small"
+                  onClick={() => dispatch(decreaseItemQuantity(id))}
+                >
+                  -
+                </Button>
+                <span className="text-sm font-medium">{currentQuantity}</span>
+                <Button
+                  type="small"
+                  onClick={() => dispatch(increaseItemQuantity(id))}
+                >
+                  +
+                </Button>
+              </div>
+              <DeleteItem pizzaId={id} />
+            </>
+          ) : (
+            <AddToCart pizza={pizza} />
+          ))}
       </div>
     </li>
   );

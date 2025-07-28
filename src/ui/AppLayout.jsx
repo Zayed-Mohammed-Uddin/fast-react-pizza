@@ -2,6 +2,7 @@ import { Outlet, useNavigation } from "react-router-dom";
 import Header from "./Header";
 import Spinner from "./Spinner";
 import CartOverview from "../features/cart/CartOverview";
+import Footer from "./Footer";
 
 function AppLayout() {
   const navigation = useNavigation();
@@ -12,13 +13,14 @@ function AppLayout() {
       {isLoading && <Spinner />}
       <Header />
 
-      <div className="overflow-y-auto mb-6">
+      <div className="mb-6 overflow-y-auto">
         <main className="mx-auto max-w-3xl">
           <Outlet />
         </main>
       </div>
 
       <CartOverview />
+      <Footer />
     </div>
   );
 }

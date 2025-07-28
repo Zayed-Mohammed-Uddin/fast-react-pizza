@@ -1,20 +1,18 @@
-import { useFetcher, useLoaderData, useSearchParams } from "react-router-dom";
+import { useFetcher, useLoaderData } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
 import OrderItem from "./OrderItem";
-import { clearCart } from "../cart/cartSlice";
+import UpdateOrder from "./UpdateOrder";
+import { useSelector } from "react-redux";
 
 function Order() {
   const order = useLoaderData();
   const fetcher = useFetcher();
-
-  const [searchParams] = useSearchParams();
-  const dispatch = useDispatch();
+  const { userAddress } = useSelector((state) => state.user);
 
   const {
     id,
@@ -31,14 +29,6 @@ function Order() {
       fetcher.load("/menu");
     }
   }, [fetcher]);
-
-  console.log(fetcher.data);
-
-  useEffect(() => {
-    if (searchParams.get("clearCart") === "true") {
-      dispatch(clearCart());
-    }
-  }, [searchParams, dispatch]);
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
@@ -71,12 +61,23 @@ function Order() {
       </div>
 
       <ul className="dive-stone-200 divide-y border-t border-b leading-7">
-        {cart.map((item) => (
-          <OrderItem item={item} key={item.id} />
+        {cart.map((item, index) => (
+          <OrderItem
+            item={item}
+            key={index}
+            isLoadingIngredients={fetcher.state === "loading"}
+            ingredients={
+              fetcher.data?.find((el) => el.id === item.pizzaId)?.ingredients ??
+              []
+            }
+          />
         ))}
       </ul>
 
       <div className="space-y-2 bg-stone-200 px-6 py-5">
+        {userAddress && <p className="text-sm font-bold text-stone-600">
+          Order to be delivered at: {userAddress}
+        </p>}
         <p className="text-sm font-medium text-stone-600">
           Price pizza: {formatCurrency(orderPrice)}
         </p>
@@ -89,6 +90,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && <UpdateOrder order={order} />}
     </div>
   );
 }

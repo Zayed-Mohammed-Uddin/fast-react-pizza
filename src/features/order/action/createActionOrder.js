@@ -1,5 +1,8 @@
 import { redirect } from "react-router-dom";
-import { createOrder } from "../../services/apiRestaurant";
+import { createOrder } from "../../../services/apiRestaurant";
+import store from "../../../store/store";
+import { addAddress } from "../../user/slice/userSlice";
+import { clearCart } from "../../cart/slice/cartSlice";
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -48,7 +51,9 @@ export async function action({ request }) {
 
   try {
     const newOrder = await createOrder(order);
-    return redirect(`/order/${newOrder.id}?clearCart=true`);
+    store.dispatch(addAddress(data.address));
+    store.dispatch(clearCart());
+    return redirect(`/order/${newOrder.id}`);
   } catch (error) {
     return { errors: { general: error.message } };
   }

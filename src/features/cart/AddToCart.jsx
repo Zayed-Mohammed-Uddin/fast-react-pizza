@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
-import { addItem } from "../cart/cartSlice";
+import { addItem } from "./slice/cartSlice";
 
 function AddToCart({ pizza }) {
   const { id, name, unitPrice } = pizza;
   const dispatch = useDispatch();
-  
+
   function handleAddToCart() {
     const newItem = {
       pizzaId: id,
@@ -19,7 +19,7 @@ function AddToCart({ pizza }) {
 
   return (
     <Button type="small" onClick={handleAddToCart}>
-      Add to cart
+      🛒 Add
     </Button>
   );
 }

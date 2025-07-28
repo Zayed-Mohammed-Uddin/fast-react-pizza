@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import Button from "../../ui/Button";
-import { getCart, clearCart } from "./cartSlice";
+import { getCart, clearCart } from "./slice/cartSlice";
 
 function Cart() {
   const { username } = useSelector((state) => state.user);
@@ -24,11 +24,8 @@ function Cart() {
   }
 
   return (
-    <div className="px-4 py-3">
-      <Button
-        to="/menu"
-        type="small"
-      >
+    <div className="px-4 py-3 mt-8">
+      <Button to="/menu" type="small">
         &larr; Back to menu
       </Button>
 

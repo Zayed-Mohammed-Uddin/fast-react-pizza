@@ -24,5 +24,5 @@ export async function fetchUserAddress() {
   const addressObj = await getAddress(position);
   const address = `${addressObj?.locality}, ${addressObj?.city} ${addressObj?.postcode}, ${addressObj?.countryName}`;
 
-  return { position, address };
+  return { position, fetchedAddress: address };
 }

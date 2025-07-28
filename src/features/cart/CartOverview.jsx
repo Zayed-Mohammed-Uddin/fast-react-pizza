@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getTotalCartQuantity, getTotalCartPrice } from "./cartSlice";
+import { getTotalCartQuantity, getTotalCartPrice } from "./slice/cartSlice";
 import { formatCurrency } from "../../utils/helpers";
 import Button from "../../ui/Button";
 

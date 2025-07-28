@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchUserAddress } from "../../services/apiGeocoding";
+import { fetchUserAddress } from "../../../services/apiGeocoding";
 
 const initialState = {
   username: "",
   status: "idle",
   position: {},
-  address: "",
+  userAddress: "",
+  fetchedAddress: "",
   error: "",
 };
 
@@ -17,9 +18,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    updateName(state, action) {
+    addName(state, action) {
       state.username = action.payload;
     },
+    addAddress(state, action){
+      state.userAddress = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -29,7 +33,7 @@ const userSlice = createSlice({
       .addCase(fetchAddress.fulfilled, (state, action) => {
         state.status = "idle";
         state.position = action.payload.position;
-        state.address = action.payload.address;
+        state.fetchedAddress = action.payload.fetchedAddress;
       })
       .addCase(fetchAddress.rejected, (state, action) => {
         state.status = "error";
@@ -38,5 +42,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateName } = userSlice.actions;
+export const { addName, addAddress } = userSlice.actions;
 export default userSlice.reducer;

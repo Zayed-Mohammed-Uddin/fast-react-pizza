@@ -6,7 +6,7 @@ import {
   increaseItemQuantity,
   decreaseItemQuantity,
   getCurrentQuantityById,
-} from "./cartSlice";
+} from "./slice/cartSlice";
 import { useSelector } from "react-redux";
 
 function CartItem({ item }) {

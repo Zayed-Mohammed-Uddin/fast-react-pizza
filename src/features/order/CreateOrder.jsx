@@ -3,21 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, useActionData, useNavigation } from "react-router-dom";
 
 import Button from "../../ui/Button";
-import { getCart, getTotalCartPrice } from "../cart/cartSlice";
-import { fetchAddress } from "../user/userSlice";
+import { getCart, getTotalCartPrice } from "../cart/slice/cartSlice";
+import { fetchAddress } from "../user/slice/userSlice";
 
 function CreateOrder() {
   const navigation = useNavigation();
+  const formErrors = useActionData();
+
   const [withPriority, withSetPriority] = useState(false);
   const isSubmitting = navigation.state === "submitting";
-  const formErrors = useActionData();
+
   const {
     username,
-    address,
+    userAddress,
+    fetchedAddress,
     status: addressStatus,
     error: addressError,
     position,
   } = useSelector((state) => state.user);
+
   const isLoadingAddress = addressStatus === "loading";
   const dispatch = useDispatch();
 
@@ -66,6 +70,7 @@ function CreateOrder() {
 
       <Form
         method="POST"
+        action="/order/new"
         className="flex flex-col items-center justify-center gap-y-6"
       >
         <div>
@@ -103,7 +108,7 @@ function CreateOrder() {
             type="text"
             id="address"
             name="address"
-            defaultValue={address}
+            defaultValue={fetchedAddress || userAddress}
             required
             className={orderInput}
             placeholder={
