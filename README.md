@@ -7,7 +7,6 @@ A modern pizza ordering application built with React, Redux Toolkit, and React R
 - **🛒 Shopping Cart**: Add, remove, and manage pizza quantities
 - **📋 Order Management**: Create orders with form validation
 - **👤 User Management**: Username persistence with Redux
-- **📱 Responsive Design**: Mobile-first design with Tailwind CSS
 - **🔍 Menu Browsing**: Browse available pizzas with real-time data
 - **📍 Geolocation**: Get user's address (optional)
 - **⚡ Fast Loading**: Optimized with Vite build tool
@@ -85,29 +84,6 @@ src/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
-
-## 🎨 Styling
-
-The project uses Tailwind CSS v4 with:
-- **Custom font**: Roboto from Google Fonts
-- **Responsive design**: Mobile-first approach
-- **Custom components**: Reusable button and form styles
-- **Smooth transitions**: Enhanced user experience
-
-## 📱 Responsive Design
-
-- **Mobile-first**: Designed for mobile devices first
-- **Breakpoints**: Responsive across all screen sizes
-- **Touch-friendly**: Optimized for touch interactions
-
-## 🔮 Future Enhancements
-
-- [ ] User authentication
-- [ ] Order history
-- [ ] Payment integration
-- [ ] Real-time order tracking
-- [ ] Pizza customization
-- [ ] Loyalty program
 
 ## 🤝 Contributing
 
