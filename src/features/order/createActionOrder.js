@@ -40,7 +40,6 @@ export async function action({ request }) {
   }
 
   if (Object.keys(errors).length > 0) return { errors };
-
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
@@ -49,7 +48,7 @@ export async function action({ request }) {
 
   try {
     const newOrder = await createOrder(order);
-    return redirect(`/order/${newOrder.id}`);
+    return redirect(`/order/${newOrder.id}?clearCart=true`);
   } catch (error) {
     return { errors: { general: error.message } };
   }
