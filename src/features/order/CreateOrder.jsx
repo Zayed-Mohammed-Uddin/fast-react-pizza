@@ -16,7 +16,9 @@ function CreateOrder() {
     address,
     status: addressStatus,
     error: addressError,
+    position,
   } = useSelector((state) => state.user);
+  const isLoadingAddress = addressStatus === "loading";
   const dispatch = useDispatch();
 
   const cart = useSelector(getCart);
@@ -105,7 +107,7 @@ function CreateOrder() {
             required
             className={orderInput}
             placeholder={
-              addressStatus === "loading"
+              isLoadingAddress
                 ? "Getting your location..."
                 : "Enter your address"
             }
@@ -129,16 +131,29 @@ function CreateOrder() {
 
         <div className="space-x-4">
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
+          <input
+            type="hidden"
+            name="position"
+            value={
+              position.latitude && position.longitude
+                ? `${position.latitude}, ${position.longitude}`
+                : ""
+            }
+          />
+          {!position.latitude && !position.longitude && (
+            <Button
+              onClick={handleGetLocation}
+              type="order"
+              disabled={isLoadingAddress}
+            >
+              {isLoadingAddress ? "Getting location..." : "Get Location"}
+            </Button>
+          )}
           <Button
-            onClick={handleGetLocation}
+            disabled={isSubmitting || isLoadingAddress}
             type="order"
-            disabled={addressStatus === "loading"}
+            htmlType="submit"
           >
-            {addressStatus === "loading"
-              ? "Getting location..."
-              : "Get Location"}
-          </Button>
-          <Button disabled={isSubmitting} type="order" htmlType="submit">
             {isSubmitting ? "Ordering..." : "Order now"}
           </Button>
         </div>
